@@ -28,11 +28,15 @@ export class PaginationComponent implements OnChanges {
   }
 
   private calculatePagination() {
-    const pages = Array(this.results.total_pages)
+    const allPages = Array(this.results.total_pages)
       .fill(null)
       .map((_, i) => i + 1);
-    const currentIndex = pages.indexOf(this.currentPage);
-    const sliceFrom = Math.max(0, currentIndex - this.pagesAround);
-    this.pages = pages.slice(sliceFrom, currentIndex + 1 + this.pagesAround);
+
+    const currentPageIndex = allPages.indexOf(this.currentPage);
+
+    const sliceFrom = Math.max(0, currentPageIndex - this.pagesAround);
+    const sliceTo = currentPageIndex + 1 + this.pagesAround;
+
+    this.pages = allPages.slice(sliceFrom, sliceTo);
   }
 }

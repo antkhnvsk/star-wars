@@ -11,4 +11,8 @@ export default [
     path: ':page',
     component: PeopleListComponent,
   },
+  {
+    path: ':page/person',
+    loadChildren: () => import('../person/routes'),
+  },
 ] as Routes;

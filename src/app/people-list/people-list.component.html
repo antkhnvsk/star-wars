@@ -2,7 +2,7 @@
   <a
     *ngFor="let person of peopleResults.results"
     class="link"
-    [routerLink]="['/person', person.uid]"
+    [routerLink]="['person', person.uid]"
   >
     {{ person.name }}
   </a>
