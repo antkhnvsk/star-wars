@@ -1,9 +1,9 @@
-import { JsonPipe, NgFor } from '@angular/common';
+import { NgFor } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
   Input,
-  OnChanges,
+  OnChanges
 } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { RequestResults } from '../models';

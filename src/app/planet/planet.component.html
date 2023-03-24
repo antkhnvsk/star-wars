@@ -1,12 +1,13 @@
 <div *ngIf="planetResult$ | async as data" class="grid">
   <div class="full">{{ data.result.properties.name }}</div>
+
   <div class="full">{{ data.result.description }}</div>
 
   <div class="col">terrain</div>
   <div class="col">{{ data.result.properties.terrain }}</div>
 
   <div class="col">diameter</div>
-  <div class="col">{{ data.result.properties.diameter | number }} </div>
+  <div class="col">{{ data.result.properties.diameter | number }}</div>
 
   <div class="col">rotation_period</div>
   <div class="col">{{ data.result.properties.rotation_period }}</div>
@@ -15,10 +16,10 @@
   <div class="col">{{ data.result.properties.orbital_period }}</div>
 
   <div class="col">gravity</div>
-  <div class="col">{{ data.result.properties.gravity }}g</div>
+  <div class="col">{{ data.result.properties.gravity }}</div>
 
   <div class="col">population</div>
-  <div class="col">{{ data.result.properties.population | number}}</div>
+  <div class="col">{{ data.result.properties.population | number }}</div>
 
   <div class="col">climate</div>
   <div class="col">{{ data.result.properties.climate }}</div>
