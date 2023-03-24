@@ -1,1 +1,12 @@
-<p>people-list works!</p>
+<ng-container *ngIf="peopleResults$ | async as peopleResults">
+  <a
+    *ngFor="let person of peopleResults.results"
+    class="link"
+    [routerLink]="['/person', person.uid]"
+  >
+    {{ person.name }}
+  </a>
+</ng-container>
+
+<a [routerLink]="['../1']">1</a>
+<a [routerLink]="['../2']">2</a>
