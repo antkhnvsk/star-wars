@@ -11,7 +11,7 @@ import { RequestResults } from '../models';
 @Component({
   selector: 'app-pagination',
   standalone: true,
-  imports: [RouterLink, JsonPipe, NgFor, RouterLinkActive],
+  imports: [RouterLink, NgFor, RouterLinkActive],
   templateUrl: './pagination.component.html',
   styleUrls: ['./pagination.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

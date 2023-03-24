@@ -22,7 +22,7 @@ export class PeopleListComponent implements OnInit {
     private ativatedRoute: ActivatedRoute
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.page$ = this.ativatedRoute.params.pipe(
       map((params) => +params['page'])
     );
