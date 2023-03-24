@@ -6,7 +6,11 @@
   >
     {{ person.name }}
   </a>
-</ng-container>
 
-<a [routerLink]="['../1']">1</a>
-<a [routerLink]="['../2']">2</a>
+  <app-pagination
+    *ngIf="peopleResults.total_pages > 1"
+    class="pagination"
+    [results]="peopleResults"
+    [currentPage]="(page$ | async) ?? 1"
+  ></app-pagination>
+</ng-container>

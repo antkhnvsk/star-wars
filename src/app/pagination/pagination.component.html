@@ -1,0 +1,7 @@
+<a
+  *ngFor="let page of pages"
+  [routerLink]="['../' + page]"
+  routerLinkActive="page-link-active"
+  class="page-link"
+  >{{ page }}</a
+>
