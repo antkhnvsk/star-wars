@@ -6,4 +6,8 @@ export default [
     path: ':personId',
     component: PersonComponent,
   },
+  {
+    path: ':personId/planet',
+    loadChildren: () => import('../planet/routes'),
+  },
 ] as Routes;

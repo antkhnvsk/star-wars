@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { map, Observable, switchMap } from 'rxjs';
-import { PersonResult } from '../models/person';
+import { PersonResult } from '../models';
 import { PlanetIdPipe } from '../planet-id-pipe';
 
 @Component({
