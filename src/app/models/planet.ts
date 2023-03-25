@@ -13,6 +13,8 @@ interface PlanetProperties {
   edited: string;
   name: string;
   url: string;
+  residents?: string[];
+  films?: string[];
 }
 
 export interface Planet {

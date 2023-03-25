@@ -1,8 +1,8 @@
 import { AsyncPipe, NgIf } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { map, Observable, switchMap } from 'rxjs';
+import { SwapiService } from '../api';
 import { PersonResult } from '../models';
 import { PlanetIdPipe } from '../planet-id-pipe';
 
@@ -18,7 +18,7 @@ export class PersonComponent implements OnInit {
   personResult$!: Observable<PersonResult>;
 
   constructor(
-    private httpClient: HttpClient,
+    private swapiService: SwapiService,
     private ativatedRoute: ActivatedRoute
   ) {}
 
@@ -28,11 +28,7 @@ export class PersonComponent implements OnInit {
     );
 
     this.personResult$ = this.personId$.pipe(
-      switchMap((personId) =>
-        this.httpClient.get<PersonResult>(
-          `https://www.swapi.tech/api/people/${personId}`
-        )
-      )
+      switchMap((personId) => this.swapiService.getPerson(personId))
     );
   }
 }

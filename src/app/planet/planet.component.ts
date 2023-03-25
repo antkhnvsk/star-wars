@@ -1,8 +1,8 @@
-import { AsyncPipe, DecimalPipe, JsonPipe, NgIf } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
+import { AsyncPipe, DecimalPipe, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { map, Observable, switchMap } from 'rxjs';
+import { SwapiService } from '../api';
 import { PlanetResult } from '../models';
 
 @Component({
@@ -17,7 +17,7 @@ export class PlanetComponent {
   planetResult$!: Observable<PlanetResult>;
 
   constructor(
-    private httpClient: HttpClient,
+    private swapiService: SwapiService,
     private ativatedRoute: ActivatedRoute
   ) {}
 
@@ -27,11 +27,7 @@ export class PlanetComponent {
     );
 
     this.planetResult$ = this.planetId$.pipe(
-      switchMap((planetId) =>
-        this.httpClient.get<PlanetResult>(
-          `https://www.swapi.tech/api/planets/${planetId}`
-        )
-      )
+      switchMap((planetId) => this.swapiService.getPlanet(planetId))
     );
   }
 }
