@@ -1,39 +1,37 @@
-<div *ngIf="personResult$ | async as result" class="grid">
+<div *ngIf="person$ | async as person" class="grid">
   <div class="full">
-    {{ result.result.properties.name }}
+    {{ person.properties.name }}
   </div>
 
   <div class="full">
-    {{ result.result.description }}
+    {{ person.description }}
+  </div>
+
+  <div class="col">Homeworld</div>
+  <div class="col">
+    <a [routerLink]="['planet', person.properties.homeworld | planetId]"
+      >Planet #{{ person.properties.homeworld | planetId }}
+    </a>
   </div>
 
   <div class="col">Gender</div>
-  <div class="col">{{ result.result.properties.gender }}</div>
+  <div class="col">{{ person.properties.gender }}</div>
 
   <div class="col">Birth year</div>
-  <div class="col">{{ result.result.properties.birth_year }}</div>
+  <div class="col">{{ person.properties.birth_year }}</div>
 
   <div class="col">Height</div>
-  <div class="col">{{ result.result.properties.height }}</div>
+  <div class="col">{{ person.properties.height }}</div>
 
   <div class="col">Mass</div>
-  <div class="col">{{ result.result.properties.mass }}</div>
+  <div class="col">{{ person.properties.mass }}</div>
 
   <div class="col">Hair color</div>
-  <div class="col">{{ result.result.properties.hair_color }}</div>
+  <div class="col">{{ person.properties.hair_color }}</div>
 
   <div class="col">Skin color</div>
-  <div class="col">{{ result.result.properties.skin_color }}</div>
+  <div class="col">{{ person.properties.skin_color }}</div>
 
   <div class="col">Eye color</div>
-  <div class="col">{{ result.result.properties.eye_color }}</div>
-
-  <div class="col">Homeworld</div>
-  <div class="col">{{ result.result.properties.homeworld }}</div>
-
-  <div class="full">
-    <a
-      [routerLink]="['planet', result.result.properties.homeworld | planetId]"
-    >planet</a>
-  </div>
+  <div class="col">{{ person.properties.eye_color }}</div>
 </div>

@@ -1,10 +1,11 @@
 import { AsyncPipe, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
-import { map, Observable, switchMap } from 'rxjs';
-import { SwapiService } from '../api';
-import { PersonResult } from '../models';
+import { RouterLink } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { filter } from 'rxjs';
 import { PlanetIdPipe } from '../planet-id-pipe';
+import { isNotUndefined } from '../utils';
+import { PersonActions, personIdSelector, personViewSelector } from './store';
 
 @Component({
   standalone: true,
@@ -14,21 +15,16 @@ import { PlanetIdPipe } from '../planet-id-pipe';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PersonComponent implements OnInit {
-  personId$!: Observable<number>;
-  personResult$!: Observable<PersonResult>;
+  person$ = this.store.select(personViewSelector);
 
-  constructor(
-    private swapiService: SwapiService,
-    private ativatedRoute: ActivatedRoute
-  ) {}
+  constructor(private store: Store) {}
 
   ngOnInit(): void {
-    this.personId$ = this.ativatedRoute.params.pipe(
-      map((params) => +params['personId'])
-    );
-
-    this.personResult$ = this.personId$.pipe(
-      switchMap((personId) => this.swapiService.getPerson(personId))
-    );
+    this.store
+      .select(personIdSelector)
+      .pipe(filter(isNotUndefined))
+      .subscribe((personId) =>
+        this.store.dispatch(PersonActions.load({ personId }))
+      );
   }
 }

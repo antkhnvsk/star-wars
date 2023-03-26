@@ -4,6 +4,7 @@ import { RouterLink } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { filter } from 'rxjs';
 import { PaginationComponent } from 'src/app/pagination/pagination.component';
+import { isNotUndefined } from '../utils';
 import { PeopleActions, peoplePageSelector, peopleViewSelector } from './store';
 
 @Component({
@@ -21,7 +22,7 @@ export class PeopleListComponent implements OnInit {
   ngOnInit(): void {
     this.store
       .select(peoplePageSelector)
-      .pipe(filter((page): page is number => page !== undefined))
+      .pipe(filter(isNotUndefined))
       .subscribe((page) => this.store.dispatch(PeopleActions.load({ page })));
   }
 }

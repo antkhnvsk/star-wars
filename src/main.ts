@@ -5,7 +5,8 @@ import { provideEffects } from '@ngrx/effects';
 import { provideRouterStore, routerReducer } from '@ngrx/router-store';
 import { provideState, provideStore } from '@ngrx/store';
 import { AppComponent } from './app/app.component';
-import { peopleReducer, PeopleEffects } from './app/people-list/';
+import { PeopleEffects, peopleReducer } from './app/people-list/';
+import { personReducer, PersonEffects } from './app/person';
 import ROUTES from './main.routes';
 
 bootstrapApplication(AppComponent, {
@@ -13,9 +14,11 @@ bootstrapApplication(AppComponent, {
     provideRouter(ROUTES),
     provideHttpClient(),
     provideStore(),
-    provideState('people', peopleReducer),
     provideState('router', routerReducer),
+    provideState('people', peopleReducer),
+    provideState('person', personReducer),
     provideRouterStore(),
     provideEffects(PeopleEffects),
+    provideEffects(PersonEffects),
   ],
 });
