@@ -1,6 +1,6 @@
-<ng-container *ngIf="peopleResults$ | async as peopleResults">
+<ng-container *ngIf="peopleView$ | async as view; else loading">
   <a
-    *ngFor="let person of peopleResults.results"
+    *ngFor="let person of view.data.results"
     class="link"
     [routerLink]="['person', person.uid]"
   >
@@ -8,9 +8,11 @@
   </a>
 
   <app-pagination
-    *ngIf="peopleResults.total_pages > 1"
+    *ngIf="view.data.total_pages > 1"
     class="pagination"
-    [results]="peopleResults"
-    [currentPage]="(page$ | async) ?? 1"
+    [results]="view.data"
+    [currentPage]="view.page"
   ></app-pagination>
 </ng-container>
+
+<ng-template #loading> Loading... </ng-template>

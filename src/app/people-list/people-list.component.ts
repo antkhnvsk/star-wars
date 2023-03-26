@@ -1,10 +1,10 @@
 import { AsyncPipe, NgFor, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
-import { map, Observable, switchMap } from 'rxjs';
-import { SwapiService } from '../api';
-import { PeopleResults } from '../models';
-import { PaginationComponent } from '../pagination/pagination.component';
+import { RouterLink } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { filter } from 'rxjs';
+import { PaginationComponent } from 'src/app/pagination/pagination.component';
+import { PeopleActions, peoplePageSelector, peopleViewSelector } from './store';
 
 @Component({
   standalone: true,
@@ -14,21 +14,14 @@ import { PaginationComponent } from '../pagination/pagination.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PeopleListComponent implements OnInit {
-  peopleResults$!: Observable<PeopleResults>;
-  page$!: Observable<number>;
+  peopleView$ = this.store.select(peopleViewSelector);
 
-  constructor(
-    private swapiService: SwapiService,
-    private ativatedRoute: ActivatedRoute
-  ) {}
+  constructor(private store: Store) {}
 
   ngOnInit(): void {
-    this.page$ = this.ativatedRoute.params.pipe(
-      map((params) => +params['page'])
-    );
-
-    this.peopleResults$ = this.page$.pipe(
-      switchMap((page) => this.swapiService.getPeople(page))
-    );
+    this.store
+      .select(peoplePageSelector)
+      .pipe(filter((page): page is number => page !== undefined))
+      .subscribe((page) => this.store.dispatch(PeopleActions.load({ page })));
   }
 }

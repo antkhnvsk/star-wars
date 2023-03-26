@@ -8,11 +8,11 @@ export default [
     redirectTo: '1',
   },
   {
-    path: ':page',
+    path: ':peoplePage',
     component: PeopleListComponent,
   },
   {
-    path: ':page/person',
+    path: ':peoplePage/person',
     loadChildren: () => import('../person/routes'),
   },
 ] as Routes;
