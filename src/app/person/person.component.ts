@@ -5,7 +5,11 @@ import { Store } from '@ngrx/store';
 import { filter } from 'rxjs';
 import { PlanetIdPipe } from '../planet-id-pipe';
 import { isNotUndefined } from '../utils';
-import { PersonActions, personIdSelector, personViewSelector } from './store';
+import {
+  PersonActions,
+  personIdSelector,
+  personViewSelector,
+} from '../store/person';
 
 @Component({
   standalone: true,

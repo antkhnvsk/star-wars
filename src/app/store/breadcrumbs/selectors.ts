@@ -1,5 +1,5 @@
 import { createSelector } from '@ngrx/store';
-import { selectRouteParam } from '../store';
+import { selectRouteParam } from '../router.selectors';
 
 export const breadCrumbsSelector = createSelector(
   selectRouteParam('peoplePage'),

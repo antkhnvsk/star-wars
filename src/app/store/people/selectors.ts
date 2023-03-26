@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { selectRouteParam } from '../../store';
+import { selectRouteParam } from '..';
 import { PeopleState } from './reducers';
 
 const peopleSelector = createFeatureSelector<PeopleState>('people');

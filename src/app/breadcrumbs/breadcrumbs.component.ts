@@ -2,7 +2,7 @@ import { AsyncPipe, NgFor, NgIf, NgTemplateOutlet } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { breadCrumbsSelector } from './selectors';
+import { breadCrumbsSelector } from '../store';
 
 @Component({
   standalone: true,

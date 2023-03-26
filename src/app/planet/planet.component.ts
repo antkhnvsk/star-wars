@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { filter } from 'rxjs';
 import { isNotUndefined } from '../utils';
-import { PlanetActions, planetIdSelector, planetViewSelector } from './store';
+import { PlanetActions, planetIdSelector, planetViewSelector } from '../store';
 
 @Component({
   standalone: true,

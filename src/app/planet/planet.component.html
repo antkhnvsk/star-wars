@@ -1,4 +1,4 @@
-<div *ngIf="planet$ | async as planet" class="grid">
+<div *ngIf="planet$ | async as planet; else loading" class="grid">
   <div class="full">{{ planet.properties.name }}</div>
 
   <div class="full">{{ planet.description }}</div>
@@ -27,3 +27,5 @@
   <div class="col">surface_water</div>
   <div class="col">{{ planet.properties.surface_water }}</div>
 </div>
+
+<ng-template #loading> Loading... </ng-template>

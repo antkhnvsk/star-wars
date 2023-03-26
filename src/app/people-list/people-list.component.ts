@@ -5,7 +5,11 @@ import { Store } from '@ngrx/store';
 import { filter } from 'rxjs';
 import { PaginationComponent } from 'src/app/pagination/pagination.component';
 import { isNotUndefined } from '../utils';
-import { PeopleActions, peoplePageSelector, peopleViewSelector } from './store';
+import {
+  PeopleActions,
+  peoplePageSelector,
+  peopleViewSelector,
+} from '../store/people';
 
 @Component({
   standalone: true,

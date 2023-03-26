@@ -1,4 +1,4 @@
-<div *ngIf="person$ | async as person" class="grid">
+<div *ngIf="person$ | async as person; else loading" class="grid">
   <div class="full">
     {{ person.properties.name }}
   </div>
@@ -35,3 +35,5 @@
   <div class="col">Eye color</div>
   <div class="col">{{ person.properties.eye_color }}</div>
 </div>
+
+<ng-template #loading> Loading... </ng-template>
