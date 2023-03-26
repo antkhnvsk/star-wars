@@ -2,8 +2,8 @@ import { AsyncPipe, DecimalPipe, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { filter } from 'rxjs';
-import { isNotUndefined } from '../utils';
 import { PlanetActions, planetIdSelector, planetViewSelector } from '../store';
+import { isNotUndefined } from '../utils';
 
 @Component({
   standalone: true,

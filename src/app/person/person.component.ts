@@ -4,12 +4,12 @@ import { RouterLink } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { filter } from 'rxjs';
 import { PlanetIdPipe } from '../planet-id-pipe';
-import { isNotUndefined } from '../utils';
 import {
   PersonActions,
   personIdSelector,
   personViewSelector,
 } from '../store/person';
+import { isNotUndefined } from '../utils';
 
 @Component({
   standalone: true,
