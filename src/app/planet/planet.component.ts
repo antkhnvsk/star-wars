@@ -1,9 +1,9 @@
 import { AsyncPipe, DecimalPipe, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { map, Observable, switchMap } from 'rxjs';
-import { SwapiService } from '../api';
-import { PlanetResult } from '../models';
+import { Store } from '@ngrx/store';
+import { filter } from 'rxjs';
+import { isNotUndefined } from '../utils';
+import { PlanetActions, planetIdSelector, planetViewSelector } from './store';
 
 @Component({
   standalone: true,
@@ -13,21 +13,16 @@ import { PlanetResult } from '../models';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PlanetComponent {
-  planetId$!: Observable<number>;
-  planetResult$!: Observable<PlanetResult>;
+  planet$ = this.store.select(planetViewSelector);
 
-  constructor(
-    private swapiService: SwapiService,
-    private ativatedRoute: ActivatedRoute
-  ) {}
+  constructor(private store: Store) {}
 
   ngOnInit(): void {
-    this.planetId$ = this.ativatedRoute.params.pipe(
-      map((params) => +params['planetId'])
-    );
-
-    this.planetResult$ = this.planetId$.pipe(
-      switchMap((planetId) => this.swapiService.getPlanet(planetId))
-    );
+    this.store
+      .select(planetIdSelector)
+      .pipe(filter(isNotUndefined))
+      .subscribe((planetId) =>
+        this.store.dispatch(PlanetActions.load({ planetId }))
+      );
   }
 }
