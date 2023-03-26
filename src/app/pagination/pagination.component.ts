@@ -3,10 +3,9 @@ import {
   ChangeDetectionStrategy,
   Component,
   Input,
-  OnChanges
+  OnChanges,
 } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { RequestResults } from '../models';
 
 @Component({
   selector: 'app-pagination',
@@ -17,7 +16,7 @@ import { RequestResults } from '../models';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PaginationComponent implements OnChanges {
-  @Input() results!: RequestResults<unknown>;
+  @Input() totalPages!: number;
   @Input() currentPage!: number;
   @Input() pagesAround = 2;
 
@@ -28,7 +27,7 @@ export class PaginationComponent implements OnChanges {
   }
 
   private calculatePagination() {
-    const allPages = Array(this.results.total_pages)
+    const allPages = Array(this.totalPages)
       .fill(null)
       .map((_, i) => i + 1);
 

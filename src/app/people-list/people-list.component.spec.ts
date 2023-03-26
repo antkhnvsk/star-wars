@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideMockStore } from '@ngrx/store/testing';
 
 import { PeopleListComponent } from './people-list.component';
 
@@ -8,9 +9,9 @@ describe('PeopleListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ PeopleListComponent ]
-    })
-    .compileComponents();
+      imports: [PeopleListComponent],
+      providers: [provideMockStore({})],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(PeopleListComponent);
     component = fixture.componentInstance;

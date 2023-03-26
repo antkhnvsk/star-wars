@@ -10,7 +10,7 @@
   <app-pagination
     *ngIf="view.data.total_pages > 1"
     class="pagination"
-    [results]="view.data"
+    [totalPages]="view.data.total_pages"
     [currentPage]="view.page"
   ></app-pagination>
 </ng-container>

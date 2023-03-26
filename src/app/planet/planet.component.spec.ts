@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideMockStore } from '@ngrx/store/testing';
 
 import { PlanetComponent } from './planet.component';
 
@@ -8,9 +9,9 @@ describe('PlanetComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ PlanetComponent ]
-    })
-    .compileComponents();
+      imports: [PlanetComponent],
+      providers: [provideMockStore({})],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(PlanetComponent);
     component = fixture.componentInstance;
