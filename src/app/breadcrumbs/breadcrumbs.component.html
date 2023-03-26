@@ -1,1 +1,10 @@
-People > Luke Skywalker > Planet: Tatooine
+<ng-container *ngFor="let item of breadcrumbs$ | async; let last = last">
+  <ng-container *ngIf="!last; else itemText">
+    <a [routerLink]="item.link">
+      <ng-content *ngTemplateOutlet="itemText"></ng-content>
+    </a>
+    →
+  </ng-container>
+
+  <ng-template #itemText>{{ item.text }}</ng-template>
+</ng-container>

@@ -1,13 +1,19 @@
+import { AsyncPipe, NgFor, NgIf, NgTemplateOutlet } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { breadCrumbsSelector } from './selectors';
 
 @Component({
   standalone: true,
-  imports: [],
+  imports: [AsyncPipe, NgFor, NgIf, RouterLink, NgTemplateOutlet],
   selector: 'app-breadcrumbs',
   templateUrl: './breadcrumbs.component.html',
   styleUrls: ['./breadcrumbs.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BreadcrumbsComponent {
+  breadcrumbs$ = this.store.select(breadCrumbsSelector);
 
+  constructor(private store: Store) {}
 }
