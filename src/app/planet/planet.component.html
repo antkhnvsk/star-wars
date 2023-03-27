@@ -1,31 +1,67 @@
 <div *ngIf="planet$ | async as planet; else loading" class="grid">
-  <div class="full">{{ planet.properties.name }}</div>
+  <div class="full">
+    <h2>
+      {{ planet.properties.name }}
+    </h2>
+  </div>
 
-  <div class="full">{{ planet.description }}</div>
+  <div class="full">
+    <em>
+      {{ planet.description }}
+    </em>
+  </div>
 
-  <div class="col">terrain</div>
+  <div class="col">Terrain</div>
   <div class="col">{{ planet.properties.terrain }}</div>
 
-  <div class="col">diameter</div>
-  <div class="col">{{ planet.properties.diameter | number }}</div>
+  <div class="col">Diameter</div>
+  <div class="col">
+    <ng-container *ngIf="+planet.properties.diameter > 0; else na">
+      {{ planet.properties.diameter | number }} km.
+    </ng-container>
+  </div>
 
-  <div class="col">rotation_period</div>
-  <div class="col">{{ planet.properties.rotation_period }}</div>
-
-  <div class="col">orbital_period</div>
-  <div class="col">{{ planet.properties.orbital_period }}</div>
-
-  <div class="col">gravity</div>
-  <div class="col">{{ planet.properties.gravity }}</div>
-
-  <div class="col">population</div>
-  <div class="col">{{ planet.properties.population | number }}</div>
-
-  <div class="col">climate</div>
+  <div class="col">Climate</div>
   <div class="col">{{ planet.properties.climate }}</div>
 
-  <div class="col">surface_water</div>
-  <div class="col">{{ planet.properties.surface_water }}</div>
+  <div class="col">Gravity</div>
+  <div class="col">{{ planet.properties.gravity }}</div>
+
+  <div class="col">Time of one rotation of the planet</div>
+  <div class="col">
+    <ng-container *ngIf="+planet.properties.rotation_period > 0; else na">
+      {{ planet.properties.rotation_period }} hours
+    </ng-container>
+  </div>
+
+  <div class="col">Time of a planet's rotation around the local sun.</div>
+  <div class="col">
+    <ng-container *ngIf="+planet.properties.orbital_period > 0; else na">
+      {{ planet.properties.orbital_period }} days
+    </ng-container>
+  </div>
+
+  <div class="col">Percentage of the planet's surface covered by water</div>
+  <div class="col">
+    <ng-container
+      *ngIf="planet.properties.surface_water !== 'unknown'; else na"
+    >
+      {{ planet.properties.surface_water }} %
+    </ng-container>
+  </div>
+
+  <div class="col">The average population of sentient beings</div>
+  <div class="col">
+    <ng-container *ngIf="+planet.properties.population > 0; else na">
+      {{ planet.properties.population | number }}
+    </ng-container>
+  </div>
 </div>
 
-<ng-template #loading> Loading... </ng-template>
+<ng-template #na>N/A</ng-template>
+
+<ng-template #loading>
+  <div class="d-flex justify-content-center my-5">
+    <div class="spinner-border text-warning" role="status"></div>
+  </div>
+</ng-template>

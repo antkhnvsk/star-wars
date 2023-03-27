@@ -6,7 +6,7 @@ describe('My First Test', () => {
     cy.url().should('not.include', '/person/');
     cy.url().should('not.include', '/planet/');
 
-    cy.contains('Star Wars App');
+    cy.contains('Star Wars Universe');
 
     const paginationLinks = cy.get('app-pagination a');
     paginationLinks.eq(1).click();

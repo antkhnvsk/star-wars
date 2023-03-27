@@ -1,7 +1,9 @@
-<a
-  *ngFor="let page of pages"
-  [routerLink]="['../' + page]"
-  routerLinkActive="page-link-active"
-  class="page-link"
-  >{{ page }}</a
->
+<div class="btn-group btn-group-lg">
+  <a
+    *ngFor="let page of pages"
+    [routerLink]="['../' + page]"
+    routerLinkActive="active"
+    class="btn btn-outline-warning"
+    >{{ page }}</a
+  >
+</div>

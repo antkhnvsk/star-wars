@@ -1,15 +1,21 @@
 <div *ngIf="person$ | async as person; else loading" class="grid">
   <div class="full">
-    {{ person.properties.name }}
+    <h2>
+      {{ person.properties.name }}
+    </h2>
   </div>
 
-  <div class="full">
-    {{ person.description }}
-  </div>
+  <p class="full">
+    <em>
+      {{ person.description }}
+    </em>
+  </p>
 
   <div class="col">Homeworld</div>
   <div class="col">
-    <a [routerLink]="['planet', person.properties.homeworld | planetId]"
+    <a
+      [routerLink]="['planet', person.properties.homeworld | planetId]"
+      class="link-warning"
       >Planet #{{ person.properties.homeworld | planetId }}
     </a>
   </div>
@@ -21,10 +27,18 @@
   <div class="col">{{ person.properties.birth_year }}</div>
 
   <div class="col">Height</div>
-  <div class="col">{{ person.properties.height }}</div>
+  <div class="col">
+    <ng-container *ngIf="+person.properties.mass > 0; else na">
+      {{ person.properties.height }} cm.
+    </ng-container>
+  </div>
 
   <div class="col">Mass</div>
-  <div class="col">{{ person.properties.mass }}</div>
+  <div class="col">
+    <ng-container *ngIf="+person.properties.mass > 0; else na">
+      {{ person.properties.mass }} kg.
+    </ng-container>
+  </div>
 
   <div class="col">Hair color</div>
   <div class="col">{{ person.properties.hair_color }}</div>
@@ -36,4 +50,10 @@
   <div class="col">{{ person.properties.eye_color }}</div>
 </div>
 
-<ng-template #loading> Loading... </ng-template>
+<ng-template #na>N/A</ng-template>
+
+<ng-template #loading>
+  <div class="d-flex justify-content-center my-5">
+    <div class="spinner-border text-warning" role="status"></div>
+  </div>
+</ng-template>

@@ -1,18 +1,26 @@
 <ng-container *ngIf="peopleView$ | async as view; else loading">
   <a
     *ngFor="let person of view.data.results"
-    class="link"
+    class="link link-warning"
     [routerLink]="['person', person.uid]"
   >
-    {{ person.name }}
+    <h4 class="my-4">
+      {{ person.name }}
+    </h4>
   </a>
 
-  <app-pagination
-    *ngIf="view.data.total_pages > 1"
-    class="pagination"
-    [totalPages]="view.data.total_pages"
-    [currentPage]="view.page"
-  ></app-pagination>
+  <div class="d-flex justify-content-center">
+    <app-pagination
+      *ngIf="view.data.total_pages > 1"
+      class="pagination"
+      [totalPages]="view.data.total_pages"
+      [currentPage]="view.page"
+    ></app-pagination>
+  </div>
 </ng-container>
 
-<ng-template #loading> Loading... </ng-template>
+<ng-template #loading>
+  <div class="d-flex justify-content-center my-5">
+    <div class="spinner-border text-warning" role="status"></div>
+  </div>
+</ng-template>
